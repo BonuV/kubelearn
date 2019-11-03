@@ -19,4 +19,4 @@ Command to use:
 Test:
 use command : 
  - Kubectl exec -it <pod2_name> bash ; 
- - curl <cluster-ip>:80
+ - curl <cluster_ip>:80

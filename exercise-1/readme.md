@@ -17,4 +17,4 @@ Command to use:
  - kubectl get pods 
 
 Test:
-use command : Kubectl exec -it <pod2_name> bash ; curl <cluster-ip>:8080
+use command : Kubectl exec -it <pod2_name> bash ; curl <cluster-ip>:80

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: py-pod-2
+  name: py-pod-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-pod-2
+  template:
+    metadata:
+      labels:
+        app: py-pod-2
+    spec:
+      securityContext:
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+      - image: <pod_image_name>
+        name: py-pod-2
+        ports: 
+          - containerPort: 5000
+        command: ["python3"]
+        args: ["app.py", "You just reached pod2"]
+        securityContext:
+          allowPrivilegeEscalation: false

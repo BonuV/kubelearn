@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: py-pod-1
+  name: py-pod-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-pod-1
+  template:
+    metadata:
+      labels:
+        app: py-pod-1
+    spec:
+      securityContext:
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+      - image: <pod_image_name>
+        name: py-pod-1
+        ports: 
+          - containerPort: 5000
+        command: ["python3"]
+        args: ["app.py","You just reached pod1"]
+        securityContext:
+          allowPrivilegeEscalation: false
+---
+apiVersion: v1
+kind: Service
+metadata:  
+  name: py-pod-1-service
+spec:
+  selector:    
+    app: py-pod-1
+  type: ClusterIP
+  ports:  
+  - name: http
+    port: 80
+    targetPort: 5000
+    protocol: TCP

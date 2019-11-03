@@ -1,4 +1,5 @@
 ``` Communication between two pods , when the pods are published on different nodes ```
+
 Steps:
  - Build a docker image  and incorporate the image names in pod1, pod2 yml 
  - Create pod1 using pod1.yml
